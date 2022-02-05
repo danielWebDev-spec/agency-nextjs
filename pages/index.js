@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { Intro, Services, Testimonials } from "../components";
-import { data } from "../data";
+import { data, users } from "../data";
 
-export default function Home({ services }) {
+export default function Home({ services, testimonies }) {
   return (
     <div>
       <Head>
@@ -11,15 +11,20 @@ export default function Home({ services }) {
       </Head>
       <Intro />
       <Services services={services} />
-      <Testimonials />
+      <Testimonials testimonies={testimonies} />
     </div>
   );
 }
 
 export const getStaticProps = async () => {
-  const services = await data;
+  try {
+    const services = await data;
+    const testimonies = await users;
 
-  return {
-    props: { services },
-  };
+    return {
+      props: { services, testimonies },
+    };
+  } catch (error) {
+    console.log(error);
+  }
 };

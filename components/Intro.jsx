@@ -21,11 +21,11 @@ const Intro = () => {
       </div>
       <div className={styles.card}>
         <Image
+          priority
           src={Avocado}
           alt="avocado"
           layout="fill"
           objectFit="cover"
-          loading="lazy"
         />
       </div>
     </div>

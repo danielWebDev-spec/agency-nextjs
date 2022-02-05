@@ -1,10 +1,9 @@
-import Image from "next/image";
 import React from "react";
 import { Circle } from ".";
-import { users } from "../data";
 import styles from "../styles/Testimonials.module.css";
+import Testimonial from "./Testimonial";
 
-const Testimonials = () => {
+const Testimonials = ({ testimonies }) => {
   return (
     <div className={styles.container}>
       <Circle
@@ -14,36 +13,7 @@ const Testimonials = () => {
         right={"0"}
       />
       <h1 className={styles.title}>Testimonials</h1>
-      <div className={styles.wrapper}>
-        {users.map((user) => (
-          <div key={user.id} className={styles.card}>
-            <Image
-              src={`/img/${user.logo}`}
-              width={30}
-              height={30}
-              objectFit="cover"
-              loading="lazy"
-              alt=""
-            />
-            <p className={styles.comment}>{user.comment}</p>
-            <div className={styles.person}>
-              <Image
-                className={styles.avatar}
-                src={`/img/${user.avatar}`}
-                width={45}
-                height={45}
-                objectFit="cover"
-                loading="lazy"
-                alt=""
-              />
-            </div>
-            <div className={styles.info}>
-              <span className={styles.username}>{user.name}</span>
-              <span className={styles.jobTitle}>{user.title}</span>
-            </div>
-          </div>
-        ))}
-      </div>
+      <Testimonial testimonies={testimonies} />
     </div>
   );
 };
